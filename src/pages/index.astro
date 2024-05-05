@@ -1,13 +1,13 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
-import { contentfulClient } from "../lib/contentful";
-const pages = await contentfulClient.getEntries({ content_type: 'page' });
+import { getPages } from "src/models/page";
+const pages = await getPages();
 ---
 <PageLayout>
 	<ul>
-		{pages.items.map((page) => (
-			<a href={`/${page.fields.slug}`}>
-				{page.fields.title}
+		{pages.map((page) => (
+			<a href={`/${page.slug}`}>
+				{page.title}
 			</a>
 		))}
 	</ul>

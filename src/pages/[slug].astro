@@ -1,17 +1,13 @@
 ---
-import { contentfulClient } from "../lib/contentful";
-import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+import { getPages } from "../models/page";
 import PageLayout from "@layouts/PageLayout.astro";
 
 export async function getStaticPaths() {
-    const pages = await contentfulClient.getEntries({ content_type: 'page' });
+    const pages = await getPages();
 
-    return pages.items.map(page => ({
-        params: { slug: page.fields.slug },
-        props: {
-            ...page.fields,
-            body: documentToHtmlString(page.fields.body),
-        },
+    return pages.map(page => ({
+        params: { slug: page.slug },
+        props: page,
     }));
 }
 

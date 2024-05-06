@@ -4,11 +4,5 @@ import { getPages } from "src/models/page";
 const pages = await getPages();
 ---
 <PageLayout>
-	<ul>
-		{pages.map((page) => (
-			<a href={`/${page.slug}`}>
-				{page.title}
-			</a>
-		))}
-	</ul>
+	<p>We are the BMS PTO.</p>
 </PageLayout>

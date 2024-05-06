@@ -14,6 +14,5 @@ export async function getStaticPaths() {
 const page = Astro.props;
 ---
 <PageLayout title={page.title}>
-    <h1>{page.title}</h1>
     <div set:html={page.body}></div>
 </PageLayout>

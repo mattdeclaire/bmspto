@@ -1,7 +1,13 @@
 ---
 import { getPages } from "src/models/page";
+import { getSettings } from "src/models/settings";
 
-const pages = await getPages();
+const settings = await getSettings();
+
+const pages = (await getPages())
+    .filter(page => page.slug !== settings.homepage.slug);
+
+
 const { title } = Astro.props;
 
 import "../styles/main.css";

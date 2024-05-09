@@ -1,8 +1,8 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
-import { getPages } from "src/models/page";
-const pages = await getPages();
+import { getPage } from "src/models/page";
+const page = await getPage('2EpXC82OhHyPMeQJpkBEhl');
 ---
 <PageLayout>
-	<p>We are the BMS PTO.</p>
+    <div set:html={page.body}></div>
 </PageLayout>

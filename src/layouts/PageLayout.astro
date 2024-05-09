@@ -3,6 +3,8 @@ import { getPages } from "src/models/page";
 
 const pages = await getPages();
 const { title } = Astro.props;
+
+import "../styles/main.css";
 ---
 <html lang="en">
 	<head>
@@ -16,7 +18,7 @@ const { title } = Astro.props;
                 BMS PTO
             </a>
 
-            <ul class="flex gap-6">
+            <ul class="flex gap-6 list-none">
                 {pages.map(page => (
                     <li>
                         <a href={`/${page.slug}`} class="hover:underline">
@@ -36,3 +38,9 @@ const { title } = Astro.props;
         </div>
 	</body>
 </html>
+
+<style>
+    a {
+        @apply text-inherit no-underline hover:underline;
+    }
+</style>

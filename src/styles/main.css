@@ -12,32 +12,32 @@
 
   /* Headings */
   h1 {
-    @apply text-4xl font-bold mb-4;
+    @apply text-4xl font-bold mt-4;
   }
 
   h2 {
-    @apply text-3xl font-semibold mb-3;
+    @apply text-3xl font-semibold mt-3;
   }
 
   h3 {
-    @apply text-2xl font-semibold mb-2;
+    @apply text-2xl font-semibold mt-2;
   }
 
   h4 {
-    @apply text-xl font-semibold mb-2;
+    @apply text-xl font-semibold mt-2;
   }
 
   h5 {
-    @apply text-lg font-semibold mb-1;
+    @apply text-lg font-semibold mt-1;
   }
 
   h6 {
-    @apply text-base font-semibold mb-1;
+    @apply text-base font-semibold mt-1;
   }
 
   /* Paragraphs */
   p {
-    @apply leading-normal mb-4;
+    @apply leading-normal mt-4;
   }
 
   /* Links */
@@ -47,11 +47,11 @@
 
   /* Lists */
   ul {
-    @apply list-disc pl-6 mb-4;
+    @apply list-disc pl-6 mt-4;
   }
 
   ol {
-    @apply list-decimal pl-6 mb-4;
+    @apply list-decimal pl-6 mt-4;
   }
 
   .btn {

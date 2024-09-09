@@ -23,12 +23,12 @@ import "../styles/main.css";
 		<title>{title &&  `${title} |`} BMS PTO</title>
 	</head>
 	<body>
-        <header class="p-10 flex gap-10 bg-slate-200">
-            <a href="/">
+        <header class="px-4 md:px-10 py-4 flex items-center gap-5 bg-slate-200 drop-shadow">
+            <a href="/" class="text-xl font-bold drop-shadow">
                 BMS PTO
             </a>
 
-            <ul class="m-0 flex gap-6 list-none">
+            <ul class="mt-0 p-0 flex gap-4 list-none">
                 {pages.map(page => (
                     <li>
                         <a href={`/${page.slug}`} class="hover:underline">
@@ -44,12 +44,12 @@ import "../styles/main.css";
             </ul>
         </header>
 
-        {title &&
-            <h1 class="p-10 text-2xl bg-slate-100">{title}</h1>
-        }
-
-        <div class="p-10">
+        <div class="p-2 md:p-10 pb-20">
             <slot />
+        </div>
+
+        <div class="p-10 text-center bg-slate-400">
+            <a href="/">Benicia Middle School Parent Teacher Organization</a>
         </div>
 	</body>
 </html>

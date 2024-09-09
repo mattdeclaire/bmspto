@@ -3,10 +3,12 @@ import PageLayout from "@layouts/PageLayout.astro";
 ---
 
 <PageLayout>
-    <h1 class="p-20 text-center text-white">
-        Benicia Middle School<br>
-        Parent Teacher Organization
-    </h1>
+    <div class="banner p-10 md:p-20 text-center text-white">
+        <h1 class="drop-shadow">
+            Benicia Middle School<br>
+            Parent Teacher Organization
+        </h1>
+    </div>
 
     <div class="my-8 p-8 bg-slate-50">
         <h2>Our Mission</h2>
@@ -55,7 +57,7 @@ import PageLayout from "@layouts/PageLayout.astro";
 </PageLayout>
 
 <style>
-    h1 {
+    .banner {
         background-position: center center;
         background-image: url(/img/yearbook.jpg);
         background-size: cover;

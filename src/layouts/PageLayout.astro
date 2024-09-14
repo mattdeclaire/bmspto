@@ -23,7 +23,7 @@ import "../styles/main.css";
 		<title>{title &&  `${title} |`} BMS PTO</title>
 	</head>
 	<body>
-        <header class="px-4 md:px-10 py-4 flex items-center gap-5 bg-slate-200 drop-shadow">
+        <header class="relative px-4 md:px-10 py-4 flex items-center gap-5 bg-slate-200 drop-shadow">
             <a href="/" class="text-xl font-bold drop-shadow">
                 BMS PTO
             </a>
@@ -41,7 +41,7 @@ import "../styles/main.css";
                 <ul class="
                     list-none
                     m-0 flex gap-4
-                    absolute top-full left-0 w-full bg-slate-200 p-4 flex-col text-right
+                    absolute z-20 top-full left-0 w-full bg-slate-200 p-4 flex-col text-right
                     md:relative md:bg-inherit md:p-0 md:flex-row
                 ">
                     {pages.map(page => (

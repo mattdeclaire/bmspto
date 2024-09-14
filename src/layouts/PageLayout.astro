@@ -28,25 +28,41 @@ import "../styles/main.css";
                 BMS PTO
             </a>
 
-            <ul class="mt-0 p-0 flex gap-4 list-none">
-                {pages.map(page => (
+            <label for="nav-checkbox" class="md:hidden absolute top-5 right-6">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                </svg>
+            </label>
+            <!-- position offscreen instead of hiding so that it's still tabbable -->
+            <input type="checkbox" class="absolute peer -left-full" id="nav-checkbox">
+
+            <nav class="hidden peer-checked:block md:block">
+                <ul class="
+                    list-none
+                    m-0 flex gap-4
+                    absolute top-full left-0 w-full bg-slate-200 p-4 flex-col text-right
+                    md:relative md:bg-inherit md:p-0 md:flex-row
+                ">
+                    {pages.map(page => (
+                        <li>
+                            <a href={`/${page.slug}`} class="hover:underline">
+                                {page.title}
+                            </a>
+                        </li>
+                    ))}
                     <li>
-                        <a href={`/${page.slug}`} class="hover:underline">
-                            {page.title}
+                        <a href="https://www.bms-gear.com">
+                            Spirit Store
                         </a>
                     </li>
-                ))}
-                <li>
-                    <a href="https://www.bms-gear.com">
-                        Spirit Store
-                    </a>
-                </li>
-                <li>
-                    <a href="https://bms.beniciaunified.org/our-school/the-viking-times/">
-                        Viking Times
-                    </a>
-                </li>
-            </ul>
+                    <li>
+                        <a href="https://bms.beniciaunified.org/our-school/the-viking-times/">
+                            Viking Times
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </header>
 
         <div class="p-2 md:p-10 pb-20">

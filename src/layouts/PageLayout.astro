@@ -44,6 +44,11 @@ import "../styles/main.css";
                     absolute z-20 top-full left-0 w-full bg-slate-200 p-4 flex-col text-right
                     md:relative md:bg-inherit md:p-0 md:flex-row
                 ">
+                    <li class="md:hidden">
+                        <a href="/">
+                            Home
+                        </a>
+                    </li>
                     {pages.map(page => (
                         <li>
                             <a href={`/${page.slug}`} class="hover:underline">

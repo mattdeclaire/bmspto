@@ -4,7 +4,7 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://www.bmspto.com",
+  site: "https://www.bmspto.net",
   integrations: [tailwind({
     applyBaseStyles: false,
   })],

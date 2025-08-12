@@ -99,7 +99,8 @@ import PageLayout from "@layouts/PageLayout.astro";
             <p>Can you donate more, or less? Or course! We know every family's situation is unique and no donation is too small.</p>
             
             <input type="hidden" name="__prefilled_amount" value="1500" />
-            <button type="submit" class="btn my-4" id="donate-bn">Donate</button>
+            <button type="submit" class="btn mt-4" id="donate-bn">Donate</button>
+            <p class="my-0 hidden" id="donation-change-tip">(amount can be changed on next page)</p>
             
             <p>Remember to check if your employer offers donation matching! The United Way and Benevity both have BMS PTO as a group you can donate to.</p>
             <p>You can donate here on the web, or bring cash or checks to the main office.</p>
@@ -116,6 +117,7 @@ import PageLayout from "@layouts/PageLayout.astro";
         const hiddenAmountInput = form.querySelector('input[name="__prefilled_amount"]');
         const checkboxes = form.querySelectorAll('input[type="checkbox"]');
         const donateButton = form.querySelector('button[type="submit"]');
+        const tip = form.querySelector('#donation-change-tip');
         
         checkboxes.forEach(checkbox => {
             checkbox.addEventListener('change', () => {
@@ -131,6 +133,7 @@ import PageLayout from "@layouts/PageLayout.astro";
                 hiddenAmountInput.value = total * 100;
                 
                 donateButton.innerHTML = total > 0 ? "Donate $" + total : "Donate";
+                tip.style.display = total > 0 ? 'block' : 'none';
             });
         });
     });

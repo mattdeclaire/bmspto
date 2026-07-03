@@ -1,13 +1,13 @@
 import { defineConfig } from 'astro/config';
 
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.bmspto.net",
-  integrations: [tailwind({
-    applyBaseStyles: false,
-  })],
+  vite: {
+    plugins: [tailwindcss()],
+  },
   redirects: {
     "/slack": "https://join.slack.com/t/bms-parent-teacher/shared_invite/zt-36izqg9x1-pAJakGWRcBcRl_2gmn8FlA",
   },

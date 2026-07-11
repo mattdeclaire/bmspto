@@ -1,60 +1,177 @@
 @import "tailwindcss";
 
+/* ============================================================
+   BMS PTO — SITE THEME
+   ------------------------------------------------------------
+   This file is the single place to change how the site looks.
+
+   1. @theme — design tokens (colors, fonts). Swap the brand /
+      gold scales and the header, footer, buttons, cards,
+      headings, and links all follow.
+   2. @layer base — what plain HTML looks like on every page
+      (headings, paragraphs, links, lists, form controls).
+   3. @layer components — reusable classes used by the pages:
+      .btn, .btn-gold, .btn-ghost, .card, .panel, .panel-gold,
+      .nav-link, .site-footer
+   ============================================================ */
+
+@theme {
+    /* Used for headings, buttons, navigation, and the logo */
+    --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+
+    /* Primary brand color — Viking navy */
+    --color-brand-50: #f2f7fb;
+    --color-brand-100: #e3edf5;
+    --color-brand-200: #c2d9e9;
+    --color-brand-300: #8fbbd7;
+    --color-brand-400: #5598c0;
+    --color-brand-500: #307ca9;
+    --color-brand-600: #21638e;
+    --color-brand-700: #1c5074;
+    --color-brand-800: #1a4460;
+    --color-brand-900: #16344b;
+    --color-brand-950: #0e2233;
+
+    /* Accent color — Viking gold */
+    --color-gold-50: #fdfaeb;
+    --color-gold-100: #f9f0c9;
+    --color-gold-200: #f4df8f;
+    --color-gold-300: #eeca52;
+    --color-gold-400: #e8b427;
+    --color-gold-500: #d89b18;
+    --color-gold-600: #bb7812;
+    --color-gold-700: #955712;
+    --color-gold-800: #7c4516;
+    --color-gold-900: #6a3918;
+    --color-gold-950: #3d1d0a;
+}
+
 @layer base {
-  body {
-    /* font-family: 'Roboto', sans-serif; */
-    font-size: 16px;
-    line-height: 1.5;
-    color: #333;
-  }
+    body {
+        @apply bg-white font-sans text-slate-700 antialiased;
+    }
 
-  /* Headings */
-  h1 {
-    @apply text-4xl font-bold mt-4;
-  }
+    ::selection {
+        @apply bg-gold-200 text-brand-950;
+    }
 
-  h2 {
-    @apply text-3xl font-semibold mt-3;
-  }
+    /* Headings */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-display font-bold text-balance text-brand-900;
+    }
 
-  h3 {
-    @apply text-2xl font-semibold mt-2;
-  }
+    h1 {
+        @apply mt-8 text-4xl;
+    }
 
-  h4 {
-    @apply text-xl font-semibold mt-2;
-  }
+    h2 {
+        @apply mt-8 text-3xl;
+    }
 
-  h5 {
-    @apply text-lg font-semibold mt-1;
-  }
+    h3 {
+        @apply mt-6 text-2xl;
+    }
 
-  h6 {
-    @apply text-base font-semibold mt-1;
-  }
+    h4 {
+        @apply mt-4 text-xl;
+    }
 
-  /* Paragraphs */
-  p {
-    @apply leading-normal mt-4;
-  }
+    h5 {
+        @apply mt-4 text-lg;
+    }
 
-  /* Links */
-  a {
-    @apply text-blue-500 hover:text-blue-700 underline;
-  }
+    h6 {
+        @apply mt-4 text-base;
+    }
 
-  /* Lists */
-  ul {
-    @apply list-disc pl-6 mt-4;
-  }
+    /* Paragraphs */
+    p {
+        @apply mt-4 leading-relaxed;
+    }
 
-  ol {
-    @apply list-decimal pl-6 mt-4;
-  }
+    /* Links */
+    a {
+        @apply font-medium text-brand-700 underline decoration-brand-700/30 underline-offset-2 transition-colors hover:text-brand-600 hover:decoration-gold-500;
+    }
 
-  .btn {
-    @apply bg-blue-500 hover:bg-blue-700
-      no-underline text-white hover:text-white  text-nowrap
-      py-2 px-4 rounded;
-  }
+    /* Lists */
+    ul {
+        @apply mt-4 list-disc pl-6;
+    }
+
+    ol {
+        @apply mt-4 list-decimal pl-6;
+    }
+
+    main li + li {
+        @apply mt-1.5;
+    }
+
+    /* Form controls */
+    input[type="checkbox"] {
+        @apply mr-1.5 size-4 accent-brand-600;
+    }
+
+    label:has(input[type="checkbox"]) {
+        @apply cursor-pointer;
+    }
+}
+
+@layer components {
+    /* Buttons */
+    .btn {
+        @apply inline-block rounded-lg bg-brand-700 px-5 py-2.5 font-display font-semibold text-white no-underline shadow-sm transition-colors hover:bg-brand-600 hover:text-white focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2;
+    }
+
+    .btn-gold {
+        @apply bg-gold-400 text-brand-950 hover:bg-gold-300 hover:text-brand-950;
+    }
+
+    .btn-ghost {
+        @apply border-2 border-white/70 bg-transparent text-white shadow-none hover:border-white hover:bg-white/10 hover:text-white;
+    }
+
+    /* White card with a gold top bar (used on the homepage grid) */
+    .card {
+        @apply rounded-2xl border border-t-4 border-brand-100 border-t-gold-400 bg-white p-6 shadow-sm md:p-8;
+    }
+
+    .card h2 {
+        @apply text-2xl;
+    }
+
+    /* Tinted callout box for content pages */
+    .panel {
+        @apply my-8 rounded-2xl border border-brand-100 bg-brand-50 p-6 md:p-8;
+    }
+
+    /* Add a gold left edge to a .panel for extra emphasis */
+    .panel-gold {
+        @apply border-l-4 border-l-gold-400;
+    }
+
+    .page-content > :first-child,
+    .card > :first-child,
+    .panel > :first-child {
+        margin-top: 0;
+    }
+
+    /* Header navigation links */
+    .nav-link {
+        @apply block rounded-lg px-3 py-2 font-display font-medium text-white/80 no-underline transition-colors hover:bg-white/10 hover:text-white md:px-2.5 md:py-1.5;
+    }
+
+    .nav-link[aria-current="page"] {
+        @apply text-gold-300;
+    }
+
+    /* Footer links */
+    .site-footer a {
+        @apply font-normal text-brand-100 no-underline hover:text-gold-300 hover:underline;
+    }
 }

@@ -5,7 +5,12 @@ const pages = [
     { title: "Viking Night", slug: "viking-night" },
 ];
 
-const { title } = Astro.props;
+const {
+    title,
+    description = "The Benicia Middle School Parent Teacher Organization — parents, teachers, and staff working together to support BMS students through volunteering, fundraising, and community events.",
+} = Astro.props;
+
+const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 
 import "../styles/main.css";
 ---
@@ -13,63 +18,110 @@ import "../styles/main.css";
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content={description} />
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
 		<title>{title &&  `${title} |`} BMS PTO</title>
 	</head>
-	<body>
-        <header class="relative px-4 md:px-10 py-4 flex items-center gap-5 bg-slate-200 drop-shadow">
-            <a href="/" class="text-xl font-bold drop-shadow">
-                BMS PTO
-            </a>
+	<body class="flex min-h-screen flex-col bg-white">
+        <header class="sticky top-0 z-30 bg-brand-900 text-white shadow-lg shadow-brand-950/20">
+            <div class="mx-auto flex max-w-6xl items-center gap-6 px-4 py-3 md:px-6">
+                <a href="/" class="font-display text-xl font-bold text-white no-underline hover:text-white">
+                    BMS <span class="text-gold-400">PTO</span>
+                </a>
 
-            <label for="nav-checkbox" class="md:hidden absolute p-5 top-0 right-0">
-                <span class="sr-only">Open main menu</span>
-                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-                </svg>
-            </label>
-            <!-- position offscreen instead of hiding so that it's still tabbable -->
-            <input type="checkbox" class="absolute peer -left-full" id="nav-checkbox">
+                <label for="nav-checkbox" class="ml-auto cursor-pointer rounded-lg p-2 hover:bg-white/10 md:hidden">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                    </svg>
+                </label>
+                <!-- visually hidden instead of display:none so that it's still tabbable -->
+                <input type="checkbox" class="peer sr-only" id="nav-checkbox">
 
-            <nav class="hidden peer-checked:block md:block">
-                <ul class="
-                    list-none
-                    m-0 flex gap-4
-                    absolute z-20 top-full left-0 w-full bg-slate-200 p-4 flex-col text-right
-                    md:relative md:bg-inherit md:p-0 md:flex-row
-                ">
-                    <li class="md:hidden">
-                        <a href="/">
-                            Home
-                        </a>
-                    </li>
-                    {pages.map(page => (
-                        <li>
-                            <a href={`/${page.slug}`} class="hover:underline">
-                                {page.title}
+                <nav class="hidden peer-checked:block md:ml-auto md:block">
+                    <ul class="
+                        absolute left-0 top-full z-20 m-0 flex w-full list-none flex-col gap-1
+                        border-t border-white/10 bg-brand-900 p-4 text-right shadow-xl
+                        md:static md:w-auto md:flex-row md:items-center md:gap-1 md:border-0 md:bg-transparent md:p-0 md:shadow-none
+                    ">
+                        <li class="md:hidden">
+                            <a href="/" class="nav-link" aria-current={currentPath === "/" ? "page" : undefined}>
+                                Home
                             </a>
                         </li>
-                    ))}
-                    <li>
-                        <a href="https://bms.beniciaunified.org/">
-                            BMS Website
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+                        {pages.map(page => (
+                            <li>
+                                <a href={`/${page.slug}`} class="nav-link" aria-current={currentPath === `/${page.slug}` ? "page" : undefined}>
+                                    {page.title}
+                                </a>
+                            </li>
+                        ))}
+                        <li>
+                            <a href="https://bms.beniciaunified.org/" class="nav-link">
+                                BMS Website
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </header>
 
-        <div class="p-2 md:p-10 pb-20">
-            <slot />
-        </div>
+        <main class="flex-1">
+            <slot name="hero" />
 
-        <div class="p-10 text-center bg-slate-400">
-            <a href="/">Benicia Middle School Parent Teacher Organization</a>
-        </div>
+            {title && (
+                <div class="border-b-4 border-gold-400 bg-brand-900">
+                    <div class="mx-auto max-w-5xl px-4 py-10 md:px-6 md:py-14">
+                        <h1 class="mt-0 text-white">{title}</h1>
+                    </div>
+                </div>
+            )}
+
+            <div class="page-content mx-auto w-full max-w-5xl px-4 py-8 md:px-6 md:py-12">
+                <slot />
+            </div>
+        </main>
+
+        <footer class="site-footer bg-brand-950 text-brand-200">
+            <div class="mx-auto grid max-w-6xl gap-10 px-4 py-12 md:grid-cols-3 md:px-6">
+                <div>
+                    <p class="m-0 font-display text-lg font-bold text-white">BMS <span class="text-gold-400">PTO</span></p>
+                    <p class="mt-3 text-sm leading-relaxed">
+                        The Benicia Middle School Parent Teacher Organization — parents, teachers,
+                        and staff working together to support every BMS student.
+                    </p>
+                </div>
+
+                <div>
+                    <p class="m-0 font-display font-semibold text-white">Quick Links</p>
+                    <ul class="mt-3 list-none space-y-2 p-0 text-sm">
+                        <li><a href="/">Home</a></li>
+                        {pages.map(page => (
+                            <li><a href={`/${page.slug}`}>{page.title}</a></li>
+                        ))}
+                        <li><a href="https://bms.beniciaunified.org/">BMS Website</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <p class="m-0 font-display font-semibold text-white">Get Involved</p>
+                    <ul class="mt-3 list-none space-y-2 p-0 text-sm">
+                        <li><a href="mailto:bmsptoinfo@googlegroups.com">bmsptoinfo@googlegroups.com</a></li>
+                        <li><a href="/slack">Join us on Slack</a></li>
+                        <li><a href="https://forms.gle/5DEVV71ibS2apgxA6">Volunteer with the PTO</a></li>
+                    </ul>
+                    <p class="mt-4 text-sm">Meetings: first Tuesday of the month, 6&nbsp;pm at BMS.</p>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10">
+                <p class="mx-auto my-0 max-w-6xl px-4 py-4 text-center text-xs text-brand-300 md:px-6">
+                    Benicia Middle School Parent Teacher Organization &middot; a 501(c)(3) nonprofit &middot; FEIN 84-3529231
+                </p>
+            </div>
+        </footer>
 	</body>
 </html>
-
-<style>
-    a {
-        @apply text-inherit no-underline hover:underline;
-    }
-</style>

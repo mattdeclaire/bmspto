@@ -3,7 +3,7 @@ import PageLayout from "@layouts/PageLayout.astro";
 ---
 
 <PageLayout title="Donate">
-    <h1>We need your support!</h1>
+    <h2>We need your support!</h2>
 
     <p>A direct donation to the PTO is a great way for families to help who don't have the time to take on other projects. Contribution, no matter the size, will directly impact our students' education and overall experience at BMS. Funds will help with:</p>
 
@@ -20,12 +20,12 @@ import PageLayout from "@layouts/PageLayout.astro";
         <li>Display cases for student art, sound equipment for drama, and updated PE equipment</li>
     </ul>
 
-    <div class="my-10 p-10 bg-slate-200">
+    <div class="panel panel-gold">
         <h3>Donation Guidance Form</h3>
         <p>Tell us about your student, and we'll provide guidance on a donation. Which classes and activities are they in?</p>
 
         <form id="donation-guidance-form" action="https://donate.stripe.com/14A6oI4BL9k84R9dXX5EY02" method="GET">
-            <ul class="my-6 list-none">
+            <ul class="my-6 list-none pl-0">
                 <li>
                     <label>
                         <input type="checkbox" value="20" />
@@ -84,7 +84,7 @@ import PageLayout from "@layouts/PageLayout.astro";
                                 <input type="checkbox" value="30" />
                                 $30 per student Stage Crafts (field trip, lumber, tools, safety equipment, and other advanced media)
                             </label>
-                        </li>                    
+                        </li>
                     </ul>
                 </li>
 
@@ -96,21 +96,21 @@ import PageLayout from "@layouts/PageLayout.astro";
                 </li>
             </ul>
 
-            <p>Can you donate more, or less? Or course! We know every family's situation is unique and no donation is too small.</p>
-            
+            <p>Can you donate more, or less? Of course! We know every family's situation is unique and no donation is too small.</p>
+
             <input type="hidden" name="__prefilled_amount" value="2000" />
-            <button type="submit" class="btn mt-4" id="donate-bn">Donate</button>
+            <button type="submit" class="btn btn-gold mt-4" id="donate-bn">Donate</button>
             <p class="my-0 hidden" id="donation-change-tip">(amount can be changed on next page)</p>
 
             <p>Or <a href="https://www.paypal.com/donate/?hosted_button_id=DEQF675HZT8RU">donate with Paypal</a>.</p>
-            
+
             <p>Remember to check if your employer offers donation matching! The United Way and Benevity both have BMS PTO as a group you can donate to.</p>
             <p>You can donate here on the web, or bring cash or checks to the main office.</p>
             <p>Remember! We are a 501(c)3 charitable organization. So, your donation is tax deductible. <strong>FEIN: 84-3529231</strong></p>
 
             <p>You can also scan with your phone to donate, or download the QR code for use in your flyers.</p>
             <p>
-                <img src="/img/bmspto-donation-qr-code.png" alt="Donation QR Code" />
+                <img src="/img/bmspto-donation-qr-code.png" alt="Donation QR Code" class="w-44 rounded-xl border border-brand-100 bg-white p-2 shadow-sm" />
                 <a href="/img/bmspto-donation-qr-code.png" download>download</a>
             </p>
 
@@ -126,20 +126,20 @@ import PageLayout from "@layouts/PageLayout.astro";
         const checkboxes = form.querySelectorAll('input[type="checkbox"]');
         const donateButton = form.querySelector('button[type="submit"]');
         const tip = form.querySelector('#donation-change-tip');
-        
+
         checkboxes.forEach(checkbox => {
             checkbox.addEventListener('change', () => {
                 let total = 0;
-                
+
                 checkboxes.forEach(checkbox => {
                     if (checkbox.checked) {
                         total += parseInt(checkbox.value, 10);
                     }
                 });
-                
+
                 // Convert to cents for Stripe (multiply by 100)
                 hiddenAmountInput.value = total * 100;
-                
+
                 donateButton.innerHTML = total > 0 ? "Donate $" + total : "Donate";
                 tip.style.display = total > 0 ? 'block' : 'none';
             });

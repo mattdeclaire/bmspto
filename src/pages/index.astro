@@ -3,45 +3,54 @@ import PageLayout from "@layouts/PageLayout.astro";
 ---
 
 <PageLayout>
-    <div class="banner p-10 md:p-20 text-center text-white">
-        <h1>
-            Benicia Middle School<br>
-            Parent Teacher Organization
-        </h1>
-    </div>
+    <section slot="hero" class="hero relative">
+        <div class="absolute inset-0 bg-linear-to-b from-brand-950/85 via-brand-900/70 to-brand-950/85"></div>
+        <div class="relative mx-auto flex max-w-5xl flex-col items-center px-4 py-16 text-center md:px-6 md:py-28">
+            <p class="m-0 font-display font-semibold tracking-[0.25em] uppercase text-gold-300">Benicia Middle School</p>
+            <h1 class="mt-3 text-4xl text-white md:text-5xl">Parent Teacher Organization</h1>
+            <p class="mt-4 max-w-2xl text-lg text-brand-100">
+                Parents, teachers, and staff working together to make BMS a great place
+                to learn — through volunteering, fundraising, and community events.
+            </p>
+            <div class="mt-8 flex flex-wrap justify-center gap-3">
+                <a href="/donate" class="btn btn-gold">Donate Today</a>
+                <a href="https://forms.gle/5DEVV71ibS2apgxA6" class="btn btn-ghost">Volunteer</a>
+            </div>
+        </div>
+    </section>
 
-    <div class="mt-8 grid lg:grid-cols-2 gap-4 md:gap-10">
-        <div class="p-8 bg-slate-100">
+    <div class="grid gap-6 md:gap-8 lg:grid-cols-2">
+        <section class="card">
             <h2>Our Mission</h2>
             <p>The vision of the Benicia Middle School PTO is to promote a community where parents are informed and involved. We can focus all of our funds and attention on the unique needs of our school community!</p>
             <p><a href="/about" class="btn">Learn More</a></p>
-        </div>
+        </section>
 
-        <div class="p-8 bg-slate-200">
+        <section class="card">
             <h2>Donate Today</h2>
             <p>A direct donation to the PTO is a great way for families to help who don't have the time to take on other projects. Contribution, no matter the size, will directly impact our students' education and overall experience at BMS.</p>
             <p><a href="/donate" class="btn">Donate now</a></p>
-        </div>
+        </section>
 
-        <div class="p-8 bg-slate-300">
+        <section class="card">
             <h2>Volunteer</h2>
             <p>We are still looking for help. We have a couple positions still open on the board. But, we have all sorts of ways you can help.</p>
             <p><a href="https://forms.gle/5DEVV71ibS2apgxA6" class="btn">Volunteer Today!</a></p>
             <p>Meetings start at 6 pm at BMS Talk Town on the first Tuesday of the month, unless there's no school that day.</p>
-        </div>
+        </section>
 
-        <div class="p-8 bg-slate-100">
+        <section class="card">
             <h2>Viking Night</h2>
             <p>BMS Viking night will be held Friday, October 9th, from 5 - 8pm on the BMS campus. The event will feature food trucks, inflatable obstacle courses, a teacher-led auction, and an art gallery featuring student art.</p>
             <p><a href="/viking-night" class="btn">Learn More</a></p>
-        </div>
+        </section>
     </div>
 </PageLayout>
 
 <style>
-    .banner {
-        background-position: center center;
+    .hero {
         background-image: url(/img/yearbook.jpg);
         background-size: cover;
+        background-position: center 30%;
     }
 </style>
